@@ -33,7 +33,7 @@ class DatabaseService {
     }
     public static async handleConnectionError() {
         DatabaseService.emitter.on('DB_CONNECT_ERROR', async () => {
-            console.log('info', 'database connection error...retrying');
+            console.log('info', 'handling database connection error...retrying');
             setTimeout(async () => {
                 await DatabaseService.createConnection();
             }, 3000)
