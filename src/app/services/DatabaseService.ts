@@ -1,6 +1,7 @@
 import EventEmitter = require('events');
 import { createConnection } from 'typeorm';
 import config from '../../config/config';
+import { Restaurant } from '../models/entities/Restaurant';
 import { User } from '../models/entities/User';
 
 class DatabaseService {
@@ -23,6 +24,7 @@ class DatabaseService {
             database: dbConfig.database,
             entities: [
                 User,
+                Restaurant
             ],
         }).then(() => {
             DatabaseService.isConnected = true;
