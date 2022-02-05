@@ -19,13 +19,13 @@ The API is based on the [REST](https://en.wikipedia.org/wiki/Representational_st
 
 #### Feature requirements:
 * [ ] There should be a `User` entity. Users should have `name` and `email` fields. A user should be unique by email.
-  * [ ] Create a `Users` table in database.
-  * [ ] Create a `User` model.
+  * [x] Create a `Users` table in database.
+  * [x] Create a `User` model.
   * [ ] Generate some fake users.
-  * [ ] It should be possibile to create a new user.
+  * [x] It should be possibile to create a new user.
 * [ ] There should be a `Restaurant` entity. For simplicity a restaurant should have only 5 tables, each with 4 seats. Seating time is 1 hour and a restaurant is open every day from 19:00 to 00:00.
-  * [ ] Create a `Restaurants` table in database.
-  * [ ] Create a `Restaurant` model.
+  * [x] Create a `Restaurants` table in database.
+  * [x] Create a `Restaurant` model.
   * [ ] Generate some fake restaurants.
   * [ ] It should be possibile to create a new restaurant.
   * **Nice to have**:
