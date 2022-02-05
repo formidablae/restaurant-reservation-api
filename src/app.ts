@@ -1,5 +1,7 @@
 import bodyParser from "body-parser";
-import express, { Application, Request, Response } from "express";
+import express, { Application } from "express";
+import { routes as apiRoutes } from './routes/index';
+
 
 const app: Application = express()
 
@@ -11,12 +13,6 @@ if (!process.env.ALREADY_SET) {
     process.env.ALREADY_SET = 'true';
 }
 
-app.get("/api", (req: Request, res: Response) => {
-    res.send("API is Running")
-})
-
-app.use((req, res, next) => {
-    res.send("Running");
-});
+app.use("/api", apiRoutes);
 
 export { app };
