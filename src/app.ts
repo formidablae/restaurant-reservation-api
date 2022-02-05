@@ -14,5 +14,9 @@ if (!process.env.ALREADY_SET) {
 }
 
 app.use("/api", apiRoutes);
+app.get('/health', (req, res) => res.json({
+    status: true,
+    message: 'API is healthy!'
+}));
 
 export { app };
