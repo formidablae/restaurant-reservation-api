@@ -3,6 +3,7 @@
 A simple API for reserving tables at a restaurant.
 The API is based on the [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) architectural style and uses [Node.js](https://nodejs.org/), [TypeScript](https://www.typescriptlang.org/), [Express](https://expressjs.com/), [TypeORM](https://typeorm.io/) and stores the data in [MySQL](https://www.mysql.com/) database. All is running in [Docker](https://www.docker.com/) containers.
 
+## Requirements
 #### Tech stack & best practice requirements:
 * [x] Use Node.js, TypeScript.
 * [x] Store data in a MySQL database.
@@ -52,3 +53,85 @@ The API is based on the [REST](https://en.wikipedia.org/wiki/Representational_st
     * [ ] It should be possibile to get all reservations given a specific date range and a user.
     * [ ] It should be possibile to get all reservations given a specific restaurant and a user.
     * [ ] It should be possibile to get all reservations given a specific date, restaurant and user.
+
+## Instructions on how to run the project
+Clone the project
+
+$ `git clone git@github.com:formidablae/restaurant-reservation-api.git`
+
+Change directory to inside the project
+
+$ `cd restaurant-reservation-api`
+
+Copy environment variables from `.env.example` to `.env`
+
+$ `cp .env.example .env`
+
+Fire up the containers with the database and the API.
+
+To run with Docker see the alternative instructions in the end.
+
+$ `docker-compose up -d`
+
+Run the migrations
+
+$ `docker exec -it restaurant_reservations_app /bin/bash -c "node --require ts-node/register ./node_modules/typeorm/cli.js migration:run"`
+
+Sync the database
+
+$ `docker exec -it restaurant_reservations_app /bin/bash -c "node --require ts-node/register ./node_modules/typeorm/cli.js schema:sync && npm run db:migrate"`
+
+
+If anything isn't working as expected:
+
+$ `docker-compose down -v`
+
+$ `docker container prune`
+
+$ `docker volume prune`
+
+$ `docker image ls`  # ids of the images to remove
+
+$ `docker image rm <IMAGE ID 1> <IMAGE ID 2>`  # get the ids from previous command
+
+$ `docker-compose up --build -d`
+
+... continue with the rest of the instructions from above.
+
+### Alternatively, you can run the following commands in a terminal to build and run without Docker
+
+Install the packages
+
+$ `npm install`
+
+Create the database
+
+$ `npm run db:create`
+
+Do the migrations
+
+$ `npm run db:migrate`
+
+<!--
+Seed the database with dummy data
+
+ $ `npm run db:seed`
+ -->
+
+Sync the database
+
+$ `npm run db:sync`
+
+Run the project
+
+$ `npm run build`
+
+$ `npm run start`
+
+or
+
+$ `npm run dev`
+
+or
+
+$ `npm run debug`
