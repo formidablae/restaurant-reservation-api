@@ -11,14 +11,15 @@ module.exports = {
       'src/app/models/entities/*.ts',
    ],
    migrations: [
-      'src/migration/**/*.ts',
+      'src/database/migrations/*.ts',
    ],
    subscribers: [
       'src/subscriber/**/*.ts',
    ],
    cli: {
       entitiesDir: 'src/app/models',
-      migrationsDir: 'src/migration',
-      subscribersDir: 'src/subscriber',
+      migrationsDir: 'src/database/migrations',
+      seedersDir: 'src/database/seeders',
+      // subscribersDir: 'src/subscriber',
    },
 };
