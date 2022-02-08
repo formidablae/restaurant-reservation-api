@@ -10,11 +10,11 @@ The API is based on the [REST](https://en.wikipedia.org/wiki/Representational_st
 * [x] Run everything on Docker containers.
 * [ ] Pay attention to:
   * [ ] error handling,
-  * [ ] type safety,
+  * [x] type safety,
   * [ ] dependency management.
 * **Nice to have**:
-  * [ ] Use functional programming paradigms.
-  * [ ] OpenAPI documentation.
+  * [x] Use functional programming paradigms.
+  * [x] OpenAPI documentation.
   * [ ] Use TDD (test driven development) paradigms.
   * [ ] Deploy the API to Heroku or Vercel.
 
@@ -31,8 +31,8 @@ The API is based on the [REST](https://en.wikipedia.org/wiki/Representational_st
   * [x] It should be possibile to create a new restaurant.
   * **Nice to have**:
     * [x] It should be possible to get the list of all restaurants.
-    * [ ] It should be possible to get the list of all restaurants not fully booked in a specific date.
-    * [ ] It should be possible to get the list of all restaurants that have at least 1 free table in a certain date and hour.
+    * [x] It should be possible to get the list of all restaurants not fully booked in a specific date.
+    * [x] It should be possible to get the list of all restaurants that have at least 1 free table in a certain date and hour.
   * **In the future**:
     * [ ] Introduce `superadmin`, `restaurant_owner` and `generic_user` roles.
     * [ ] Restaurants should be associated to a user with `restaurant_owner` privileges.
@@ -45,14 +45,14 @@ The API is based on the [REST](https://en.wikipedia.org/wiki/Representational_st
   * [ ] Generate some fake reservation.
   * [x] It should be possibile to make a reservation (book a restaurant) in a specific date and time.
   * [x] It should be possibile to get all reservations given a specific date range.
-  * [ ] The results of the reservation list should be paginated.
+  * [x] The results of the reservation list should be paginated.
   * **Nice to have**:
-    * [ ] It should be possibile to get all reservations given a restaurant.
-    * [ ] It should be possibile to get all reservations given a user.
-    * [ ] It should be possibile to get all reservations given a specific date range and a restaurant.
-    * [ ] It should be possibile to get all reservations given a specific date range and a user.
-    * [ ] It should be possibile to get all reservations given a specific restaurant and a user.
-    * [ ] It should be possibile to get all reservations given a specific date, restaurant and user.
+    * [x] It should be possibile to get all reservations given a restaurant.
+    * [x] It should be possibile to get all reservations given a user.
+    * [x] It should be possibile to get all reservations given a specific date range and a restaurant.
+    * [x] It should be possibile to get all reservations given a specific date range and a user.
+    * [x] It should be possibile to get all reservations given a specific restaurant and a user.
+    * [x] It should be possibile to get all reservations given a specific date, restaurant and user.
 
 ## Instructions on how to run the project
 Clone the project
