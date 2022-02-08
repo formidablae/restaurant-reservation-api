@@ -1,0 +1,209 @@
+{
+    "info": {
+        "_postman_id": "14824119-71f6-4b23-8b7e-3f3e73c1158e",
+        "name": "restaurant-reservation-api",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "api",
+            "item": [
+                {
+                    "name": "users",
+                    "item": [
+                        {
+                            "name": "Get all users",
+                            "id": "ff681d42-2cd5-4280-8519-968f5aa2ee25",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "localhost:3000/api/users",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000",
+                                    "path": [
+                                        "api",
+                                        "users"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Create new user",
+                            "id": "649beaa3-a46c-409c-b13d-aa47870fcbb8",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": null
+                            },
+                            "response": []
+                        }
+                    ],
+                    "id": "0caee010-5520-4318-bf75-9cf96001ac93"
+                },
+                {
+                    "name": "restaurants",
+                    "item": [
+                        {
+                            "name": "Get all restaurants",
+                            "id": "4c261aa1-5496-4a82-ab01-8d06d10767cc",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "localhost:3000/api/restaurants",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000",
+                                    "path": [
+                                        "api",
+                                        "restaurants"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Create new restaurant",
+                            "id": "599d0332-32bd-4911-a593-1d6e3fad9351",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": null
+                            },
+                            "response": []
+                        }
+                    ],
+                    "id": "8706d2d6-53d4-4381-9ddf-57f36697e32d"
+                },
+                {
+                    "name": "reservations",
+                    "item": [
+                        {
+                            "name": "Get all reservations",
+                            "id": "afdf5570-4416-4339-bd0b-be1aaea36c83",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "localhost:3000/api/reservations",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000",
+                                    "path": [
+                                        "api",
+                                        "reservations"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get all reservations in a certain date range",
+                            "id": "89b9154c-e6e4-4e48-b5ec-310e73f72d8a",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "localhost:3000/api/reservations",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000",
+                                    "path": [
+                                        "api",
+                                        "reservations"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get all reservations after a certain date",
+                            "id": "00eaed14-84a8-4b3a-90d7-046c0df38bb7",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "localhost:3000/api/reservations",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000",
+                                    "path": [
+                                        "api",
+                                        "reservations"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Create new reservation",
+                            "id": "2f99d435-03b2-4852-a112-102637d5524c",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": null
+                            },
+                            "response": []
+                        }
+                    ],
+                    "id": "80f660b2-8630-46aa-a552-6642a116a9b6"
+                },
+                {
+                    "name": "Check health of API",
+                    "id": "289eef51-b785-4d62-b234-39f27dee9554",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "localhost:3000/health",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "health"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "id": "4103b963-f609-430b-8f59-b0cc83388375"
+        }
+    ]
+}

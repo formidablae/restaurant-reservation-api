@@ -3,7 +3,7 @@ import { User } from "../models/entities/User";
 import { IUser } from '../models/User';
 import { IUserRepository } from "./UserRepository";
 
-export class UserService implements IUserRepository {
+export class UsersService implements IUserRepository {
 
     async get(): Promise<User[] | null> {
         // Get users from database

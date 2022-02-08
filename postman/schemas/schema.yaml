@@ -1,0 +1,161 @@
+openapi: 3.0.0
+info:
+  version: '1.0.0'
+  title: 'Restaurant Reservation API'
+servers:
+  - url: 'localhost:3000'
+paths:
+  /health:
+    get:
+      summary: 'Returns state of health of the API'
+      tags:
+        - health
+      responses:
+        '200':
+          description: API's healthy
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/users:
+    get:
+      summary: 'Returns all users'
+      tags:
+        - users
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/restaurants:
+    get:
+      summary: 'Returns all restaurants'
+      tags:
+        - restaurants
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Restaurants'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/reservations:
+    get:
+      summary: 'Returns all reservations'
+      tags:
+        - reservations
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservations'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - name
+        - email
+        - password
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        tag:
+          type: string
+    Users:
+      type: array
+      items:
+        type: object
+        $ref: '#/components/schemas/User'
+    Restaurant:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        tag:
+          type: string
+    Restaurants:
+      type: array
+      items:
+        type: object
+        $ref: '#/components/schemas/Restaurant'
+    Reservation:
+      type: object
+      required:
+        - id
+        - user_id
+        - restaurant_id
+        - order_datetime
+        - table_number
+        - guests
+      properties:
+        id:
+          type: integer
+          format: int64
+        user_id:
+          type: integer
+          format: int64
+        restaurant_id:
+          type: integer
+          format: int64
+        order_datetime:
+          type: string
+          format: date-time
+        tag:
+          type: string
+    Reservations:
+      type: array
+      items:
+        type: object
+        $ref: '#/components/schemas/Reservation'
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+security:
+  - BasicAuth: []

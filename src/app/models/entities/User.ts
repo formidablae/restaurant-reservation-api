@@ -20,10 +20,12 @@ export class User {
     public name!: string;
 
     @Column()
+    @IsNotEmpty()
     @Length(4, 100)
     public email!: string;
 
     @Column()
+    @IsNotEmpty()
     @Length(4, 100)
     public password!: string;
 

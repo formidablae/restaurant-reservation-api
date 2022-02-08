@@ -1,16 +1,16 @@
 import { NextFunction, Request, Response } from 'express';
-import { UsersService } from '../services/users.service';
+import { RestaurantsService } from '../services/restaurants.service';
 
-const usersService = new UsersService();
+const restaurantsService = new RestaurantsService();
 
-class UserController {
+class RestaurantController {
     public static listAll(req: Request, res: Response, next: NextFunction) {
-        usersService.get().then((data: any) => {
+        restaurantsService.get().then((data: any) => {
             if (data && data.length > 0) {
                 res.status(200).json(data);
             }
             else {
-                res.status(404).json({ message: 'No users found' });
+                res.status(404).json({ message: 'No restaurants found' });
             }
         }).catch((err: Error) => {
             next(new Error('Error occurred')); // TODO: handle error
@@ -18,9 +18,9 @@ class UserController {
     }
 
     public static addNew = (req: Request, res: Response, next: NextFunction) => {
-        usersService.add(req.body).then((data: any) => {
+        restaurantsService.add(req.body).then((data: any) => {
             if (data) {
-                res.json('User saved succesfully');
+                res.json('Restaurant saved succesfully');
             }
         }).catch((err: Error) => {
             next(new Error('Error occurred')); // TODO: handle error
@@ -28,4 +28,4 @@ class UserController {
     }
 }
 
-export default UserController;
+export default RestaurantController;
