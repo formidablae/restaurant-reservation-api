@@ -28,9 +28,9 @@ The API is based on the [REST](https://en.wikipedia.org/wiki/Representational_st
   * [x] Create a `Restaurants` table in database.
   * [x] Create a `Restaurant` model.
   * [ ] Generate some fake restaurants.
-  * [ ] It should be possibile to create a new restaurant.
+  * [x] It should be possibile to create a new restaurant.
   * **Nice to have**:
-    * [ ] It should be possible to get the list of all restaurants.
+    * [x] It should be possible to get the list of all restaurants.
     * [ ] It should be possible to get the list of all restaurants not fully booked in a specific date.
     * [ ] It should be possible to get the list of all restaurants that have at least 1 free table in a certain date and hour.
   * **In the future**:
@@ -40,11 +40,11 @@ The API is based on the [REST](https://en.wikipedia.org/wiki/Representational_st
     * [ ] Users with `superadmin` privileges should be able to create, update and delete users.
     * [ ] Users with `superadmin` privileges should be able to update and delete restaurants and reservations.
 * [ ] There should be a `Reservation` entity. Overbooking should not be allowed.
-  * [ ] Create a `Reservations` table in database.
-  * [ ] Create a `Reservation` model.
+  * [x] Create a `Reservations` table in database.
+  * [x] Create a `Reservation` model.
   * [ ] Generate some fake reservation.
-  * [ ] It should be possibile to make a reservation (book a restaurant) in a specific date and time.
-  * [ ] It should be possibile to get all reservations given a specific date range.
+  * [x] It should be possibile to make a reservation (book a restaurant) in a specific date and time.
+  * [x] It should be possibile to get all reservations given a specific date range.
   * [ ] The results of the reservation list should be paginated.
   * **Nice to have**:
     * [ ] It should be possibile to get all reservations given a restaurant.
