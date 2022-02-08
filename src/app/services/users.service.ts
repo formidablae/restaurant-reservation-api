@@ -1,6 +1,5 @@
 import { getRepository } from 'typeorm';
 import { User } from "../models/entities/User";
-import { IUser } from '../models/User';
 import { IUserRepository } from "./UserRepository";
 
 export class UsersService implements IUserRepository {
@@ -13,6 +12,7 @@ export class UsersService implements IUserRepository {
             return users;
         }
         catch (error) {
+            console.log(error);
             return null  // TODO: handle errors
         }
     }
@@ -24,11 +24,12 @@ export class UsersService implements IUserRepository {
             const user = await userRepository.findOneOrFail(id);
             return user;
         } catch (error) {
+            console.log(error);
             return null;  // TODO: handle errors
         }
     }
 
-    async add(model: IUser): Promise<User | null> {
+    async add(model: User): Promise<User | null> {
         const { name, email, password } = model;
         const user = new User();
         user.name = name;
@@ -38,13 +39,13 @@ export class UsersService implements IUserRepository {
         try {
             const savedUser = await userRepository.save(user);
             return savedUser;
-        } catch (e) {
-            console.log(e);
+        } catch (error) {
+            console.log(error);
             return Promise.reject(new Error('User with email: ' + email + ' already exists'));  // TODO: handle errors
         }
     }
 
-    async delete(id: number): Promise<User | null> {
+    async delete(id: number): Promise<true | null> {
         const userRepository = getRepository(User);
         let user: User;
         try {
@@ -52,8 +53,10 @@ export class UsersService implements IUserRepository {
             if (user) {
                 userRepository.delete(id);
             }
-            return null;
+            return true;
         } catch (error) {
+
+            console.log(error);
             return null;  // TODO: handle errors
         }
     }
