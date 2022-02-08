@@ -1,6 +1,6 @@
 import * as http from 'http';
 import { app } from './app';
-import { DatabaseService } from './app/services/DatabaseService';
+import { DatabaseService } from './app/services/database.service';
 
 if (!process.env.ALREADY_SET) {
     require('dotenv').config();
