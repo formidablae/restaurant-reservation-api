@@ -77,6 +77,75 @@
                             "response": []
                         },
                         {
+                            "name": "Get all restaurants that are not fully booked",
+                            "id": "99873e45-17a4-4541-b74b-2539914dce2a",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "localhost:3000/api/restaurants",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000",
+                                    "path": [
+                                        "api",
+                                        "restaurants"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get all restaurants that are not fully booked in a specific date range",
+                            "id": "87d6e97c-0505-4e34-802a-658d3fc55ec4",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "localhost:3000/api/restaurants",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000",
+                                    "path": [
+                                        "api",
+                                        "restaurants"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get all restaurants that are fully booked in a specific date range",
+                            "id": "865d8624-fe35-476b-9311-f720162aea49",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "localhost:3000/api/restaurants",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000",
+                                    "path": [
+                                        "api",
+                                        "restaurants"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
                             "name": "Create new restaurant",
                             "id": "599d0332-32bd-4911-a593-1d6e3fad9351",
                             "protocolProfileBehavior": {
@@ -159,6 +228,135 @@
                                     "path": [
                                         "api",
                                         "reservations"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get all reservations of a user",
+                            "id": "273f3400-89a7-4a3d-b105-9ed8af2bb778",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "localhost:3000/api/reservations",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000",
+                                    "path": [
+                                        "api",
+                                        "reservations"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get all reservations of a restaurant",
+                            "id": "ca4e5d09-d48c-413f-ad57-9a15ce6d25ba",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "localhost:3000/api/reservations",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000",
+                                    "path": [
+                                        "api",
+                                        "reservations"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get all reservations of a user to a restaurant",
+                            "id": "288320db-3038-4ec6-aa0f-e53bf19ab8bc",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "localhost:3000/api/reservations",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000",
+                                    "path": [
+                                        "api",
+                                        "reservations"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get all reservations of a user to a restaurant in a date range",
+                            "id": "d4bb527f-f8e9-47ac-be37-7da3d685e39a",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "localhost:3000/api/reservations",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000",
+                                    "path": [
+                                        "api",
+                                        "reservations"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get all reservations of a user paginated",
+                            "id": "0988f075-b78c-43fc-a5d2-c8dc55b71a8f",
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "localhost:3000/api/reservations?user_id=1&limit=3&page=2",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000",
+                                    "path": [
+                                        "api",
+                                        "reservations"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "user_id",
+                                            "value": "1"
+                                        },
+                                        {
+                                            "key": "limit",
+                                            "value": "3"
+                                        },
+                                        {
+                                            "key": "page",
+                                            "value": "2"
+                                        }
                                     ]
                                 }
                             },
