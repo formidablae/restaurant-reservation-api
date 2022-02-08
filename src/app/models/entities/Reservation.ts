@@ -6,9 +6,10 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn
 } from 'typeorm';
+import { IReservation } from '../Reservation';
 
 @Entity()
-export class Reservation {
+export class Reservation implements IReservation {
     @PrimaryGeneratedColumn()
     public id!: number;
 

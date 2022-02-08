@@ -1,38 +1,54 @@
-import { Between, getRepository } from 'typeorm';
+import { getRepository } from 'typeorm';
 import { Reservation } from "../models/entities/Reservation";
-import { IReservation } from '../models/Reservation';
 import { IReservationRepository } from "./ReservationRepository";
 
 export class ReservationsService implements IReservationRepository {
 
-    async get(from = "1900-01-01", to = "2100-12-31"): Promise<Reservation[] | null> {
+    async get(
+        user_id = undefined as undefined | number,
+        restaurant_id = undefined as undefined | number,
+        from = "1900-01-01",
+        to = "2100-12-31",
+        sort = "ASC" as "ASC" | "DESC",
+        page = 1,
+        limit = 10
+    ): Promise<Reservation[] | null> {
         // Get reservations from database
         try {
             const reservationRepository = getRepository(Reservation);
-            const reservations = await reservationRepository.find({
-                where: {
-                    order_datetime: Between(from, to)
-                }
-            });
+            const query = reservationRepository.createQueryBuilder("reservation");
+            if (user_id) {
+                query.where("reservation.user_id = :user_id", { user_id });
+            }
+            if (restaurant_id) {
+                query.where("reservation.restaurant_id = :restaurant_id", { restaurant_id });
+            }
+            query.andWhere("reservation.order_datetime >= :from", { from });
+            query.andWhere("reservation.order_datetime <= :to", { to });
+            query.orderBy("reservation.order_datetime", sort);
+            query.skip((page - 1) * limit);
+            query.take(limit);
+            const reservations = await query.getMany();
             return reservations;
         }
         catch (error) {
+            console.log(error);
             return null  // TODO: handle errors
         }
     }
 
     async getById(id: number): Promise<Reservation | null> {
-
         const reservationRepository = getRepository(Reservation);
         try {
             const reservation = await reservationRepository.findOneOrFail(id);
             return reservation;
         } catch (error) {
+            console.log(error);
             return null;  // TODO: handle errors
         }
     }
 
-    async add(model: IReservation): Promise<Reservation | null> {
+    async add(model: Reservation): Promise<Reservation | null> {
         const { user_id, restaurant_id, order_datetime, table_number, guests } = model;
         const reservation = new Reservation();
         reservation.user_id = user_id;
@@ -40,17 +56,17 @@ export class ReservationsService implements IReservationRepository {
         reservation.order_datetime = order_datetime;
         reservation.table_number = table_number;
         reservation.guests = guests;
-        const reservationRepository = getRepository(Reservation);
         try {
+            const reservationRepository = getRepository(Reservation);
             const savedReservation = await reservationRepository.save(reservation);
             return savedReservation;
-        } catch (e) {
-            console.log(e);
+        } catch (error) {
+            console.log(error);
             return Promise.reject(new Error('Error during reservation'));  // TODO: handle errors
         }
     }
 
-    async delete(id: number): Promise<Reservation | null> {
+    async delete(id: number): Promise<true | null> {
         const reservationRepository = getRepository(Reservation);
         let reservation: Reservation;
         try {
@@ -58,8 +74,9 @@ export class ReservationsService implements IReservationRepository {
             if (reservation) {
                 reservationRepository.delete(id);
             }
-            return null;
+            return true;
         } catch (error) {
+            console.log(error);
             return null;  // TODO: handle errors
         }
     }
