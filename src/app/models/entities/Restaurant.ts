@@ -1,7 +1,8 @@
 import { IsNotEmpty } from 'class-validator';
 import {
-    Column, Entity,
-    PrimaryGeneratedColumn
+    Column, CreateDateColumn, Entity,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
 } from 'typeorm';
 
 @Entity()
@@ -12,4 +13,12 @@ export class Restaurant {
     @Column()
     @IsNotEmpty()
     public name!: string;
+
+    @Column()
+    @CreateDateColumn()
+    public createdAt!: Date;
+
+    @Column()
+    @UpdateDateColumn()
+    public updatedAt!: Date;
 }
