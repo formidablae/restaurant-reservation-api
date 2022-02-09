@@ -1,6 +1,8 @@
 import * as bcrypt from 'bcryptjs';
-import { IsNotEmpty, Length } from 'class-validator';
+import { IsEmail, IsNotEmpty, Length, validateOrReject } from 'class-validator';
 import {
+    BeforeInsert,
+    BeforeUpdate,
     Column,
     CreateDateColumn,
     Entity,
@@ -24,6 +26,7 @@ export class User implements IUser {
 
     @Column()
     @IsNotEmpty()
+    @IsEmail()
     @Length(4, 100)
     public email!: string;
 
@@ -42,6 +45,12 @@ export class User implements IUser {
     @Column()
     @UpdateDateColumn()
     public updatedAt!: Date;
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    private validate(): Promise<void> {
+        return validateOrReject(this);
+    }
 
     public hashPassword() {
         this.password = bcrypt.hashSync(this.password, 8);

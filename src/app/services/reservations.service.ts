@@ -1,3 +1,4 @@
+import { validate } from 'class-validator';
 import { getRepository } from 'typeorm';
 import { Reservation } from "../models/entities/Reservation";
 import { IReservationRepository } from "./ReservationRepository";
@@ -49,6 +50,7 @@ export class ReservationsService implements IReservationRepository {
     }
 
     async add(model: Reservation): Promise<Reservation | null> {
+        const TABLES = 5;
         const { user_id, restaurant_id, order_datetime, table_number, guests } = model;
         const reservation = new Reservation();
         reservation.user_id = user_id;
@@ -56,9 +58,51 @@ export class ReservationsService implements IReservationRepository {
         reservation.order_datetime = order_datetime;
         reservation.table_number = table_number;
         reservation.guests = guests;
+
+        const validationErrors = await validate(reservation);
+        if (validationErrors.length > 0) {
+            throw new Error(`Validation failed!`);
+        }
+
+        if (new Date(order_datetime) < new Date()) {
+            throw new Error(`Order date must be in the future!`);
+        }
+
+        if (new Date(order_datetime) > new Date(new Date(order_datetime).setHours(23, 0, 0, 0))) {
+            throw new Error(`Order time must be before at max 23:00!`);
+        }
+
+        if (new Date(order_datetime) < new Date(new Date(order_datetime).setHours(19, 0, 0, 0))) {
+            throw new Error(`Order time must be after at least 19:00!`);
+        }
+
+
         try {
+            const order1HourBefore = new Date(new Date(order_datetime).setHours(new Date(order_datetime).getHours() - 0, 59, 59, 999)).toISOString();
+            const order1HourAfter = new Date(new Date(order_datetime).setHours(new Date(order_datetime).getHours() + 0, 59, 59, 999)).toISOString();
+            // get that restaurant's the day's reservations
             const reservationRepository = getRepository(Reservation);
-            const savedReservation = await reservationRepository.save(reservation);
+            const reservationsAlready = await reservationRepository.find({
+                where: {
+                    restaurant_id: restaurant_id,
+                    order_datetime: {
+                        $gte: order1HourBefore,
+                        $lte: order1HourAfter
+                    }
+                }
+            });
+
+            if (reservationsAlready.length !< 5) {
+                throw new Error(`All restaurant's tables at the choosen time are booked!"`);
+            }
+        } catch (error) {
+            console.log(error);
+            return Promise.reject(new Error('Error during reservation'));  // TODO: handle errors
+        }
+
+        try {
+            const reservationRepo = getRepository(Reservation);
+            const savedReservation = await reservationRepo.save(reservation);
             return savedReservation;
         } catch (error) {
             console.log(error);

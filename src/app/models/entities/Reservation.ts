@@ -1,5 +1,7 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsDate, IsInt, IsNotEmpty, Max, Min, validateOrReject } from 'class-validator';
 import {
+    BeforeInsert,
+    BeforeUpdate,
     Column,
     CreateDateColumn,
     Entity,
@@ -23,6 +25,7 @@ export class Reservation implements IReservation {
 
     @Column()
     @IsNotEmpty()
+    @IsDate()
     public order_datetime!: Date;
 
     @Column()
@@ -31,6 +34,9 @@ export class Reservation implements IReservation {
 
     @Column()
     @IsNotEmpty()
+    @IsInt()
+    @Min(1)
+    @Max(4)
     public guests!: number;
 
     @Column()
@@ -40,4 +46,10 @@ export class Reservation implements IReservation {
     @Column()
     @UpdateDateColumn()
     public updatedAt!: Date;
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    private validate(): Promise<void> {
+        return validateOrReject(this);
+    }
 }

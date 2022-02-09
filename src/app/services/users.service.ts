@@ -1,3 +1,4 @@
+import { validate } from 'class-validator';
 import { getRepository } from 'typeorm';
 import { User } from "../models/entities/User";
 import { IUserRepository } from "./UserRepository";
@@ -18,7 +19,6 @@ export class UsersService implements IUserRepository {
     }
 
     async getById(id: number): Promise<User | null> {
-
         const userRepository = getRepository(User);
         try {
             const user = await userRepository.findOneOrFail(id);
@@ -35,8 +35,13 @@ export class UsersService implements IUserRepository {
         user.name = name;
         user.email = email;
         user.password = password;
-        const userRepository = getRepository(User);
+
+        const validationErrors = await validate(user);
+        if (validationErrors.length > 0) {
+            throw new Error(`Validation failed!`);
+        }
         try {
+            const userRepository = getRepository(User);
             const savedUser = await userRepository.save(user);
             return savedUser;
         } catch (error) {
@@ -46,9 +51,9 @@ export class UsersService implements IUserRepository {
     }
 
     async delete(id: number): Promise<true | null> {
-        const userRepository = getRepository(User);
         let user: User;
         try {
+            const userRepository = getRepository(User);
             user = await userRepository.findOneOrFail(id);
             if (user) {
                 userRepository.delete(id);

@@ -9,6 +9,7 @@ The API is based on the [REST](https://en.wikipedia.org/wiki/Representational_st
 * [x] Store data in a MySQL database.
 * [x] Run everything on Docker containers.
 * [ ] Pay attention to:
+  * [x] validation rules,
   * [ ] error handling,
   * [x] type safety,
   * [ ] dependency management.
@@ -29,6 +30,7 @@ The API is based on the [REST](https://en.wikipedia.org/wiki/Representational_st
   * [x] Create a `Restaurant` model.
   * [ ] Generate some fake restaurants.
   * [x] It should be possibile to create a new restaurant.
+  * [x] Each restaurant should 5 tables with 4 seats each.
   * **Nice to have**:
     * [x] It should be possible to get the list of all restaurants.
     * [x] It should be possible to get the list of all restaurants not fully booked in a specific date.
@@ -39,13 +41,15 @@ The API is based on the [REST](https://en.wikipedia.org/wiki/Representational_st
     * [ ] Users with `restaurant_owner` privileges should be able to create, update and delete their own restaurants.
     * [ ] Users with `superadmin` privileges should be able to create, update and delete users.
     * [ ] Users with `superadmin` privileges should be able to update and delete restaurants and reservations.
-* [ ] There should be a `Reservation` entity. Overbooking should not be allowed.
+* [ ] There should be a `Reservation` entity.
   * [x] Create a `Reservations` table in database.
   * [x] Create a `Reservation` model.
   * [ ] Generate some fake reservation.
   * [x] It should be possibile to make a reservation (book a restaurant) in a specific date and time.
   * [x] It should be possibile to get all reservations given a specific date range.
   * [x] The results of the reservation list should be paginated.
+  * [x] Overbooking should not be allowed.
+  * [x] Each researvation's seating time is 1 hour.
   * **Nice to have**:
     * [x] It should be possibile to get all reservations given a restaurant.
     * [x] It should be possibile to get all reservations given a user.
