@@ -1,3 +1,4 @@
+import { validate } from 'class-validator';
 import { getRepository } from 'typeorm';
 import { Reservation } from '../models/entities/Reservation';
 import { Restaurant } from "../models/entities/Restaurant";
@@ -88,9 +89,8 @@ export class RestaurantsService implements IRestaurantRepository {
     }
 
     async getById(id: number): Promise<Restaurant | null> {
-
-        const restaurantRepository = getRepository(Restaurant);
         try {
+            const restaurantRepository = getRepository(Restaurant);
             const restaurant = await restaurantRepository.findOneOrFail(id);
             return restaurant;
         } catch (error) {
@@ -100,11 +100,18 @@ export class RestaurantsService implements IRestaurantRepository {
     }
 
     async add(model: Restaurant): Promise<Restaurant | null> {
-        const { name } = model;
+        const { name, tables } = model;
         const restaurant = new Restaurant();
         restaurant.name = name;
-        const restaurantRepository = getRepository(Restaurant);
+        restaurant.tables = tables;
+
+        const validationErrors = await validate(restaurant);
+        if (validationErrors.length > 0) {
+            throw new Error(`Validation failed!`);
+        }
+        
         try {
+            const restaurantRepository = getRepository(Restaurant);
             const savedRestaurant = await restaurantRepository.save(restaurant);
             return savedRestaurant;
         } catch (error) {
@@ -114,9 +121,9 @@ export class RestaurantsService implements IRestaurantRepository {
     }
 
     async delete(id: number): Promise<true | null> {
-        const restaurantRepository = getRepository(Restaurant);
         let restaurant: Restaurant;
         try {
+            const restaurantRepository = getRepository(Restaurant);
             restaurant = await restaurantRepository.findOneOrFail(id);
             if (restaurant) {
                 restaurantRepository.delete(id);
